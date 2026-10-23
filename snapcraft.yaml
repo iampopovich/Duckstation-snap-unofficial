@@ -64,7 +64,8 @@ parts:
       wget "$URL"
       chmod +x DuckStation-x64.AppImage
       ./DuckStation-x64.AppImage --appimage-extract
-      mv -f squashfs-root/usr $CRAFT_PART_INSTALL/
+      mkdir -p $CRAFT_PART_INSTALL/usr
+      cp -a squashfs-root/usr/. $CRAFT_PART_INSTALL/usr/
       sed -i 's|Name=DuckStation|Name=DuckStation Fresh|' $CRAFT_PART_INSTALL/usr/share/applications/org.duckstation.DuckStation.desktop
 
       VERSION=$(echo "$URL" | sed -n 's#.*/download/v\([^/]*\)/.*#\1#p')
