@@ -57,6 +57,8 @@ parts:
     plugin: nil
     build-packages:
       - wget
+    stage-packages:
+      - libcurl4t64
     override-build: |
       URL=$(curl -s "https://api.github.com/repos/Kyuyrii/Duckstation-GPL/releases/latest" | grep -o 'https://github.com/Kyuyrii/Duckstation-GPL/releases/download/[^"]*/DuckStation-x64\.AppImage' | head -1)
       wget "$URL"
@@ -77,6 +79,7 @@ parts:
       - usr/lib/libpng16.so*
       - usr/lib/libjpeg.so*
       - usr/lib/libSDL2-2.0.so*
+      - usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libcurl.so*
 
   command-chain:
     after: [duckstation-fresh-app]
